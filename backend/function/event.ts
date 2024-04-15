@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import {createEvent, deleteEvent, getEvent, getEvents} from "../src/services/event.service";
+import {createEvent, deleteEvent, getEvent, getEvents, updateEvent} from "../src/services/event.service";
 import {formatResponse} from "../src/services/http.service";
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   switch(event.httpMethod.toUpperCase()) {
@@ -18,6 +18,11 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             if(!event.pathParameters?.id) return formatResponse(400, {message: 'Missing id'});
             await deleteEvent(event.pathParameters.id);
             return formatResponse(200, {message: 'Successfully deleted'});
+            break;
+      case 'PUT':
+          if(!event.pathParameters?.id || !event.body) return formatResponse(400, {message: 'Missing id or body'});
+            await updateEvent(event.pathParameters.id, JSON.parse(event.body));
+            return formatResponse(200, {message: 'Successfully updated'});
             break;
       default:
           return formatResponse(405, {message: 'Method Not Allowed'});

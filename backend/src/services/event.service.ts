@@ -18,3 +18,9 @@ export const deleteEvent = (id: string) => {
     if(isNaN(numId) || numId < 1) throw new Error('Invalid id: ' + id);
     return eventsRepository.deleteEvent(numId);
 }
+
+export const updateEvent = (id: string, event: any) => {
+    const numId = parseInt(id);
+    if(isNaN(numId) || numId < 1) throw new Error('Invalid id: ' + id);
+    return eventsRepository.updateEvent(numId, event);
+}

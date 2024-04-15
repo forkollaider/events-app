@@ -27,4 +27,8 @@ export const deleteEvent = (id: number) => {
     return getClient().delete(events).where(eq(events.id, id));
 }
 
+export const updateEvent = (id: number, event: any) => {
+    return getClient().update(events).set(event).where(eq(events.id, id));
+}
+
 
