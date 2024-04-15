@@ -3,9 +3,13 @@ import {getEvent, getEvents} from "../src/services/event.service";
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   switch(event.httpMethod.toUpperCase()) {
       case 'GET':
-          if(event.pathParameters?.id) getEvent(event.pathParameters.id);
-          else getEvents()
+          let result = null;
+          if(event.pathParameters?.id) result = getEvent(event.pathParameters.id);
+          else result = await getEvents()
+          return { body: JSON.stringify(result), statusCode: 200 };
+          break;
       default:
-          throw new Error('unknown method');
+          return {body: JSON.stringify({message:`unknown method ${event.httpMethod}`}), statusCode: 400};
+          break;
   }
 }

@@ -11,9 +11,9 @@ Resources:
   function:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.handler
+      Handler: ./function/event.handler
       Runtime: nodejs18.x
-      CodeUri: function/.
+      CodeUri: build/.
       Description: Call the AWS Lambda API
       Timeout: 10
       # Function's execution role
@@ -27,5 +27,5 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref api
-            Path: /
+            Path: /event
             Method: GET

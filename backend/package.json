@@ -5,7 +5,8 @@
   "scripts": {
     "db:generate": "drizzle-kit generate:pg",
     "db:migrate": "tsx ./db/migrate.ts",
-    "build": "tsc -noEmit"
+    "build": "tsc && npm run postbuild",
+    "postbuild": "cp package.json build/package.json && cd build && npm install --only=production"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.137",
