@@ -8,7 +8,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             const address = event.queryStringParameters?.address;
             if(!address) return formatResponse(400, {message: 'Missing address'});
             const user = (await getUser(address)) || await createUser(address);
-            return user;
+            return formatResponse(200, user);
         case 'PUT':
             if(!event.body) return formatResponse(400, {message: 'Missing body'});
             return formatResponse(200, {m: 'wip'});
