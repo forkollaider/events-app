@@ -15,8 +15,8 @@ const handler = async (event) => {
             case 'PUT':
                 if (!event.body)
                     return (0, http_service_1.formatResponse)(400, { message: 'Missing body' });
-                return (0, http_service_1.formatResponse)(200, { m: 'wip' });
-                break;
+                await (0, user_service_1.updateUser)(JSON.parse(event.body));
+                return (0, http_service_1.formatResponse)(200, { message: 'updated user' });
             default:
                 return (0, http_service_1.formatResponse)(405, { message: 'Method Not Allowed' });
         }

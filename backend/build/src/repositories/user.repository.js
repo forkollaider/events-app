@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateEvent = exports.createUser = exports.getByAddress = void 0;
+exports.updateUser = exports.createUser = exports.getByAddress = void 0;
 const serverless_1 = require("@neondatabase/serverless");
 const config_1 = require("../config");
 const schema_1 = require("../../db/schema");
@@ -18,7 +18,7 @@ const createUser = (userPayload) => {
     return getClient().insert(schema_1.user).values(userPayload);
 };
 exports.createUser = createUser;
-const updateEvent = (id, userPayload) => {
+const updateUser = (id, userPayload) => {
     return getClient().update(schema_1.user).set(userPayload).where((0, drizzle_orm_1.eq)(schema_1.user.id, id));
 };
-exports.updateEvent = updateEvent;
+exports.updateUser = updateUser;

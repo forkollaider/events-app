@@ -50,3 +50,9 @@ Resources:
             RestApiId: !Ref api
             Path: /user
             Method: GET
+        putEndpoint:
+          Type: Api
+          Properties:
+            RestApiId: !Ref api
+            Path: /user
+            Method: PUT

@@ -1,5 +1,5 @@
-import {User} from "next-auth";
 import {atom} from "jotai";
+import {User} from "@/types/User";
 
 export const getUser = async (address: `0x${string}`) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user?address=${address}`, {
@@ -18,7 +18,7 @@ export const userAtom = atom(async (get) => {
 });
 
 const shouldRefetchUserAtom = atom(true);
-const updateUserProfileAtom = atom(null, async (_get, set, user: User) => {
+export const updateUserProfileAtom = atom(null, async (_get, set, user: User) => {
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
         method: 'PUT',
         body: JSON.stringify(user),

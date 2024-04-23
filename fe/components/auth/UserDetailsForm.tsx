@@ -1,9 +1,22 @@
-import {TextField} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import {useState} from "react";
+import {useAtomValue, useSetAtom} from "jotai";
+import {updateUserProfileAtom, userAtom} from "@/store/user";
 
 export const UserDetailsForm = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    const user = useAtomValue(userAtom);
+    const [name, setName] = useState(user?.name || '');
+    const [email, setEmail] = useState(user?.email || '');
+    const updateUser = useSetAtom(updateUserProfileAtom);
+
+    const submitForm = () => {
+        updateUser({
+            ...user!,
+            name,
+            email,
+        })
+    }
+    const isFormDisabled = !name && !email;
     return (
         <form>
             <TextField
@@ -22,6 +35,7 @@ export const UserDetailsForm = () => {
                     setEmail(event.target.value);
                 }}
             />
+            <Button variant="contained" onClick={submitForm} disabled={isFormDisabled}>Submit</Button>
         </form>
     )
 }

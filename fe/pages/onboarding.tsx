@@ -10,5 +10,4 @@ const Onboarding = () => {
         </Stack>
     )
 }
-
 export default Onboarding;
