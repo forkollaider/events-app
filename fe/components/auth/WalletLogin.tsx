@@ -24,9 +24,6 @@ export default function WalletLogin() {
         if(user && !(user.name || user.email) && !redirectStarted) {
             setRedirectStarted(true);
             router.push('/onboarding');
-        } else if (user && (user.name || user.email) && !redirectStarted) {
-            setRedirectStarted(true);
-            router.push('/events');
         }
     }, [user, redirectStarted])
     return <w3m-button/>;

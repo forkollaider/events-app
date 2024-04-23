@@ -1,7 +1,7 @@
 import {EventLocation} from "@/types/Location";
 
 export type EventInstance = {
-    id: string;
+    id: number;
     name: string;
     description: string;
     price: number;

@@ -19,7 +19,17 @@ export const NewEventForm = ({closeForm}: Props) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const submitEvent = useSetAtom(saveEventAtom);
     const refetchEvents = useSetAtom(refetchEventsAtom);
+    const [nameError, setNameError] = useState(false);
+
+    const validate = () => {
+        if(!name) {
+            setNameError(true);
+            return false;
+        }
+        return true;
+    }
     const saveEvent = async () => {
+        if(!validate()) return;
         setIsSubmitting(true);
         await submitEvent({
             name,
@@ -37,6 +47,9 @@ export const NewEventForm = ({closeForm}: Props) => {
                 id="event-name"
                 label="Event name"
                 variant="outlined"
+                error={nameError}
+                helperText={nameError && 'Name is required'}
+                required={true}
                 sx={{mb: 1}}
                 value={name}
                 onChange={(event) => setName(event.target.value)}
@@ -67,7 +80,7 @@ export const NewEventForm = ({closeForm}: Props) => {
                     onChange={(event) => setLocation(event.target.value as EventLocation)}
                 >
                     {Object.values(EventLocation).map((location) => (
-                        <MenuItem value={location}>{location}</MenuItem>
+                        <MenuItem key={location} value={location}>{location}</MenuItem>
                 ))}
                 </Select>
             </FormControl>
