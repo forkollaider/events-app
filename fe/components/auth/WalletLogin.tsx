@@ -1,6 +1,6 @@
 import {useAccount} from "wagmi";
 import {useEffect, useState} from "react";
-import {atom, useAtomValue, useSetAtom} from "jotai";
+import { useAtomValue, useSetAtom} from "jotai";
 import {addressAtom, userAtom} from "@/store/user";
 import {useRouter} from "next/router";
 
