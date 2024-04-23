@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-apig",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "db:generate": "drizzle-kit generate:pg",
+    "db:migrate": "tsx ./db/migrate.ts",
+    "build": "tsc && npm run postbuild",
+    "postbuild": "cp package.json build/package.json && cd build && npm install --only=production"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.137",
+    "aws-sdk": "2.814.0",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.20.14",
+    "postgres": "^3.4.4",
+    "tsx": "^4.7.2"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.1",
+    "aws-lambda": "^1.0.7",
+    "drizzle-orm": "^0.30.8",
+    "typescript": "^5.4.5"
+  }
+}
