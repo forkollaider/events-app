@@ -3,7 +3,7 @@ import {useState} from "react";
 import {useAtomValue, useSetAtom} from "jotai";
 import {userAtom} from "@/store/user";
 import {EventLocation} from "@/types/Location";
-import {saveEventAtom} from "@/store/event";
+import {refetchEventsAtom, saveEventAtom} from "@/store/event";
 
 type Props = {
     closeForm: () => void;
@@ -18,6 +18,7 @@ export const NewEventForm = ({closeForm}: Props) => {
     const [managerId] = useState(user?.id);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const submitEvent = useSetAtom(saveEventAtom);
+    const refetchEvents = useSetAtom(refetchEventsAtom);
     const saveEvent = async () => {
         setIsSubmitting(true);
         await submitEvent({
@@ -28,6 +29,7 @@ export const NewEventForm = ({closeForm}: Props) => {
             managerId,
         })
         closeForm();
+        refetchEvents();
     }
     return (
         <Stack>

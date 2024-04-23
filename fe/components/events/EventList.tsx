@@ -13,7 +13,7 @@ export const EventList = () => {
     return (
         <Grid container spacing={2} mt={2}>
             {events.length > 0
-                ? events.map((event: any) => (<Grid md={4} item><EventCard key={event.id} event={event} currentUserId={user.id}/></Grid>))
+                ? events.map((event: any) => (<Grid key={event.id}  md={4} item><EventCard event={event} currentUserId={user.id}/></Grid>))
                 : <Typography>No events</Typography>
             }
         </Grid>

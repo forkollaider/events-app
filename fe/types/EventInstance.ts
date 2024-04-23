@@ -6,5 +6,5 @@ export type EventInstance = {
     description: string;
     price: number;
     location: EventLocation;
-    managerId: string;
+    managerId: number;
 }

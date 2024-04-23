@@ -35,6 +35,12 @@ Resources:
             RestApiId: !Ref api
             Path: /event
             Method: POST
+        deleteEndpoint:
+          Type: Api
+          Properties:
+            RestApiId: !Ref api
+            Path: /event/{id}
+            Method: DELETE
   userFunction:
     Type: AWS::Serverless::Function
     Properties:
