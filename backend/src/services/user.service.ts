@@ -5,6 +5,6 @@ export const getUser = async (address: string) => {
 }
 
 export const createUser = async (address: string) => {
-    await userRepository.create(address);
-    return await userRepository.getByAddress(address);
+    await userRepository.createUser({pubkey: address});
+    return userRepository.getByAddress(address);
 }

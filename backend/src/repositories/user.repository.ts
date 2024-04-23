@@ -1,6 +1,6 @@
 import {neon} from "@neondatabase/serverless";
 import {DB_URL} from "../config";
-import {events, user} from "../../db/schema";
+import {user} from "../../db/schema";
 import { drizzle } from 'drizzle-orm/neon-http';
 import {eq} from "drizzle-orm";
 import {User} from "../../types/User";
@@ -10,11 +10,11 @@ const getClient = () => {
     return drizzle(connection);
 }
 
-export const getUser = (address: string) => {
+export const getByAddress = (address: string) => {
     return getClient().select().from(user).where(eq(user.pubkey, address));
 }
 
-export const createUser = (userPayload: User) => {
+export const createUser = (userPayload: Partial<User>) => {
     return getClient().insert(user).values(userPayload);
 }
 export const updateEvent = (id: number, userPayload: User) => {
