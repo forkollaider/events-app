@@ -1,23 +1,23 @@
 import {Button, FormControl, InputLabel, MenuItem, Select, TextField, Stack} from "@mui/material";
 import {useState} from "react";
 import {useAtomValue, useSetAtom} from "jotai";
-import {userAtom} from "@/store/user";
 import {EventLocation} from "@/types/Location";
-import {refetchEventsAtom, createEventAtom} from "@/store/event";
+import {refetchEventsAtom, createEventAtom, updateEventAtom} from "@/store/event";
+import {EventInstance} from "@/types/EventInstance";
 
 type Props = {
+    event: EventInstance;
     closeForm: () => void;
 }
 
-export const NewEventForm = ({closeForm}: Props) => {
-    const user = useAtomValue(userAtom);
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+export const EditEventForm = ({closeForm, event}: Props) => {
+    const [name, setName] = useState(event.name);
+    const [description, setDescription] = useState(event.description);
     const [price, setPrice] = useState<number>(0);
-    const [location, setLocation] = useState<EventLocation>(EventLocation.Online);
-    const [managerId] = useState(user?.id);
+    const [location, setLocation] = useState<EventLocation>(event.location);
+    const [managerId] = useState(event.managerId);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const submitEvent = useSetAtom(createEventAtom);
+    const submitEvent = useSetAtom(updateEventAtom);
     const refetchEvents = useSetAtom(refetchEventsAtom);
     const [nameError, setNameError] = useState(false);
 
@@ -32,6 +32,7 @@ export const NewEventForm = ({closeForm}: Props) => {
         if(!validate()) return;
         setIsSubmitting(true);
         await submitEvent({
+            id: event.id,
             name,
             description,
             price,

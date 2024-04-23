@@ -1,8 +1,16 @@
 import {atom} from "jotai";
+import {EventInstance} from "@/types/EventInstance";
 
-export const saveEventAtom = atom(null, async (_, __, event) => {
+export const createEventAtom = atom(null, async (_, __, event) => {
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event`, {
         method: 'POST',
+        body: JSON.stringify(event),
+    });
+});
+
+export const updateEventAtom = atom(null, async (_, __, event: EventInstance) => {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event/${event.id}`, {
+        method: 'PUT',
         body: JSON.stringify(event),
     });
 });

@@ -18,7 +18,10 @@ export const EventCard = ({event, currentUserId, isDetailPage = false}: {event: 
         await refetchEvents();
     }
     const navigateToEvent = () => {
-        router.push('/events/' + event.id);
+        router.push(`/events/${event.id}`);
+    }
+    const goEditEvent = () => {
+        router.push(`/events/${event.id}?edit=true`);
     }
     if(!event) return <Spinner/>;
     const isOwner = event.managerId === currentUserId;
@@ -48,7 +51,7 @@ export const EventCard = ({event, currentUserId, isDetailPage = false}: {event: 
         </CardContent>
         <CardActions>
             {!isDetailPage && <Button onClick={navigateToEvent} disabled={isActionInProgress}>View</Button> }
-            {isOwner && <Button size="small" disabled={isActionInProgress}>Edit</Button>}
+            {isOwner && <Button size="small" disabled={isActionInProgress} onClick={goEditEvent}>Edit</Button>}
             {isOwner && <Button size="small" disabled={isActionInProgress} onClick={deleteEvent}>Delete</Button>}
         </CardActions>
     </Card>
