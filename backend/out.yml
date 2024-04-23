@@ -13,7 +13,7 @@ Resources:
     Properties:
       Handler: ./function/event.handler
       Runtime: nodejs18.x
-      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/068b852b4361add4bc1ef89e2f023a16
+      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/383c3d80792e336cdf0789b56c5fcc3b
       Description: Call the AWS Lambda API
       Timeout: 10
       Policies:
@@ -29,12 +29,19 @@ Resources:
               Ref: api
             Path: /event
             Method: GET
+        postEndpoint:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: api
+            Path: /event
+            Method: POST
   userFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: ./function/user.handler
       Runtime: nodejs18.x
-      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/068b852b4361add4bc1ef89e2f023a16
+      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/383c3d80792e336cdf0789b56c5fcc3b
       Description: Call the AWS Lambda API
       Timeout: 10
       Policies:
