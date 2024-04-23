@@ -17,7 +17,7 @@ export const getByAddress = (address: string) => {
 export const createUser = (userPayload: Partial<User>) => {
     return getClient().insert(user).values(userPayload);
 }
-export const updateEvent = (id: number, userPayload: User) => {
+export const updateUser = (id: number, userPayload: Omit<User,'id'>) => {
     return getClient().update(user).set(userPayload).where(eq(user.id, id));
 }
 

@@ -1,6 +1,6 @@
 import {APIGatewayProxyEvent, APIGatewayProxyResult} from "aws-lambda";
 import {formatResponse} from "../src/services/http.service";
-import {createUser, getUser} from "../src/services/user.service";
+import {createUser, getUser, updateUser} from "../src/services/user.service";
 
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
@@ -12,8 +12,8 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
                 return formatResponse(200, user);
             case 'PUT':
                 if (!event.body) return formatResponse(400, {message: 'Missing body'});
-                return formatResponse(200, {m: 'wip'});
-                break;
+                await updateUser(JSON.parse(event.body));
+                return formatResponse(200, {message: 'updated user'});
             default:
                 return formatResponse(405, {message: 'Method Not Allowed'});
         }
