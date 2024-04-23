@@ -13,7 +13,7 @@ Resources:
     Properties:
       Handler: ./function/event.handler
       Runtime: nodejs18.x
-      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/02ca7f4c6258c70f965abaceb08f3e50
+      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/cdaedd8fb3c2a12454d45221b4102a8f
       Description: Call the AWS Lambda API
       Timeout: 10
       Policies:
@@ -43,12 +43,19 @@ Resources:
               Ref: api
             Path: /event/{id}
             Method: DELETE
+        putEndpoint:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: api
+            Path: /event/{id}
+            Method: PUT
   userFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: ./function/user.handler
       Runtime: nodejs18.x
-      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/02ca7f4c6258c70f965abaceb08f3e50
+      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/cdaedd8fb3c2a12454d45221b4102a8f
       Description: Call the AWS Lambda API
       Timeout: 10
       Policies:
