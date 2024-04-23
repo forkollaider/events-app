@@ -35,6 +35,7 @@ export const NewEventForm = ({closeForm}: Props) => {
                 id="event-name"
                 label="Event name"
                 variant="outlined"
+                sx={{mb: 1}}
                 value={name}
                 onChange={(event) => setName(event.target.value)}
             />
@@ -42,6 +43,7 @@ export const NewEventForm = ({closeForm}: Props) => {
                 id="event-description"
                 label="Event description"
                 variant="outlined"
+                sx={{mb: 1}}
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
             />
@@ -49,10 +51,11 @@ export const NewEventForm = ({closeForm}: Props) => {
                 id="event-price"
                 label="Event price"
                 placeholder="type a price"
+                sx={{mb: 1}}
                 value={price}
                 onChange={(event) => setPrice(parseFloat(event.target.value) || 0)}
             />
-            <FormControl fullWidth>
+            <FormControl fullWidth sx={{mb: 1}}>
                 <InputLabel id="demo-simple-select-label">Age</InputLabel>
                 <Select
                     labelId="event-location-label"
@@ -66,7 +69,7 @@ export const NewEventForm = ({closeForm}: Props) => {
                 ))}
                 </Select>
             </FormControl>
-            <Button variant="contained" onClick={saveEvent} disabled={isSubmitting}>Save new Event</Button>
+            <Button variant="contained" onClick={saveEvent} disabled={isSubmitting} sx={{mb: 1}}>Save new Event</Button>
             <Button variant="outlined" onClick={closeForm} disabled={isSubmitting}>Cancel</Button>
         </Stack>
     )
