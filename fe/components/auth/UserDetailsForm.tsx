@@ -1,4 +1,4 @@
-import {Button, TextField} from "@mui/material";
+import {Button, Stack, TextField} from "@mui/material";
 import {useState} from "react";
 import {useAtomValue, useSetAtom} from "jotai";
 import {updateUserProfileAtom, userAtom} from "@/store/user";
@@ -16,13 +16,14 @@ export const UserDetailsForm = () => {
             email,
         })
     }
-    const isFormDisabled = !name && !email;
+    const isFormDisabled = !name || !email;
     return (
-        <form>
+        <Stack sx={{display: 'flex', flexDirection: 'column', mt: 2}}>
             <TextField
                 id="user-name"
                 label="Name"
                 value={name}
+                sx={{mb: 2}}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     setName(event.target.value);
                 }}
@@ -31,11 +32,12 @@ export const UserDetailsForm = () => {
                 id="user-email"
                 label="Email"
                 value={email}
+                sx={{mb: 2}}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     setEmail(event.target.value);
                 }}
             />
             <Button variant="contained" onClick={submitForm} disabled={isFormDisabled}>Submit</Button>
-        </form>
+        </Stack>
     )
 }

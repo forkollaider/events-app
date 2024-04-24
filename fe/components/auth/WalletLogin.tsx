@@ -5,7 +5,7 @@ import {addressAtom, userAtom} from "@/store/user";
 import {useRouter} from "next/router";
 
 export default function WalletLogin() {
-    const { address } = useAccount();
+    const { address, isDisconnected } = useAccount();
     const [isLogged, setIsLogged] = useState(false);
     const setAddress = useSetAtom(addressAtom);
     const [redirectStarted, setRedirectStarted] = useState(false);
@@ -26,5 +26,8 @@ export default function WalletLogin() {
             router.push('/onboarding');
         }
     }, [user, redirectStarted])
+    useEffect(() => {
+        router.push('/');
+    }, [isDisconnected])
     return <w3m-button/>;
 }

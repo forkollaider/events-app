@@ -15,7 +15,7 @@ const Onboarding = () => {
         }
     }, [user, redirectStarted])
     return (
-        <Stack>
+        <Stack sx={{display: 'flex', height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center'}}>
             <Typography variant="h3">Welcome to Events</Typography>
             <Typography variant="body1">Please fill-in your personal information to continue</Typography>
             <UserDetailsForm/>
