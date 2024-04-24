@@ -1,3 +1,4 @@
+'use client'
 import {useAccount} from "wagmi";
 import {useEffect, useState} from "react";
 import { useAtomValue, useSetAtom} from "jotai";
