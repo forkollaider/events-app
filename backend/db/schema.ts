@@ -1,4 +1,4 @@
-import {pgTable, serial, text, doublePrecision, integer, date} from 'drizzle-orm/pg-core';
+import {pgTable, serial, text, doublePrecision, integer, timestamp} from 'drizzle-orm/pg-core';
 
 export const user = pgTable('users', {
     id: serial('id').primaryKey(),
@@ -12,7 +12,7 @@ export const events = pgTable('events', {
     name: text('name'),
     description: text('description'),
     price: doublePrecision('price'),
-    date: date('date'),
+    datetime: timestamp('datetime'),
     location: text('location'),
     managerId: integer('manager_id').references(() => user.id),
 });
