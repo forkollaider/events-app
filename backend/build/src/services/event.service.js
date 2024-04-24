@@ -37,7 +37,7 @@ const getEvent = (id) => {
 };
 exports.getEvent = getEvent;
 const createEvent = (event) => {
-    return eventsRepository.createEvent(event);
+    return eventsRepository.createEvent({ ...event, datetime: new Date(event.datetime) });
 };
 exports.createEvent = createEvent;
 const deleteEvent = (id) => {
@@ -51,6 +51,6 @@ const updateEvent = (id, event) => {
     const numId = parseInt(id);
     if (isNaN(numId) || numId < 1)
         throw new Error('Invalid id: ' + id);
-    return eventsRepository.updateEvent(numId, event);
+    return eventsRepository.updateEvent(numId, { ...event, datetime: new Date(event.datetime) });
 };
 exports.updateEvent = updateEvent;

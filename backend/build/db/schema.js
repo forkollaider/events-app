@@ -13,6 +13,7 @@ exports.events = (0, pg_core_1.pgTable)('events', {
     name: (0, pg_core_1.text)('name'),
     description: (0, pg_core_1.text)('description'),
     price: (0, pg_core_1.doublePrecision)('price'),
+    datetime: (0, pg_core_1.timestamp)('datetime'),
     location: (0, pg_core_1.text)('location'),
     managerId: (0, pg_core_1.integer)('manager_id').references(() => exports.user.id),
 });

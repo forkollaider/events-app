@@ -13,7 +13,7 @@ Resources:
     Properties:
       Handler: ./function/event.handler
       Runtime: nodejs18.x
-      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/cdaedd8fb3c2a12454d45221b4102a8f
+      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/a72c1a79c3efd5b73863a4288abd05fc
       Description: Call the AWS Lambda API
       Timeout: 10
       Policies:
@@ -55,7 +55,7 @@ Resources:
     Properties:
       Handler: ./function/user.handler
       Runtime: nodejs18.x
-      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/cdaedd8fb3c2a12454d45221b4102a8f
+      CodeUri: s3://lambda-artifacts-6bb56f0982bf22fc/a72c1a79c3efd5b73863a4288abd05fc
       Description: Call the AWS Lambda API
       Timeout: 10
       Policies:

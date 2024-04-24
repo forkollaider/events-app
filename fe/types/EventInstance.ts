@@ -1,4 +1,5 @@
 import {EventLocation} from "@/types/Location";
+import {Dayjs} from "dayjs";
 
 export type EventInstance = {
     id: number;
@@ -7,4 +8,7 @@ export type EventInstance = {
     price: number;
     location: EventLocation;
     managerId: number;
+    datetime: Dayjs;
 }
+
+export type EventInstanceDTO =  Omit<EventInstance, 'datetime'> & {datetime: string | null};

@@ -46,6 +46,9 @@ export const EventCard = ({event, currentUserId, isDetailPage = false}: {event: 
                     <Typography variant="body2" color="text.secondary">
                         Location: {event.location}
                     </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        Date: {event.datetime.format('DD/MM/YYYY HH:mm')}
+                    </Typography>
                 </>
             )}
         </CardContent>

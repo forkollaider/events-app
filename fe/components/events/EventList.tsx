@@ -16,7 +16,6 @@ export const EventList = () => {
             <Grid item container md={12}>
                 <Grid item md={5}>
                     <AddEvent/>
-
                 </Grid>
                 <Grid item md={4}>
                     <Typography variant="h3">Our events list</Typography>
@@ -25,7 +24,7 @@ export const EventList = () => {
             </Grid>
             {events.length > 0
                 ? events.map((event: any) => (<Grid key={event.id}  md={4} item><EventCard event={event} currentUserId={user.id}/></Grid>))
-                : <Typography>No events</Typography>
+                : <Grid item><Typography>No events</Typography></Grid>
             }
         </Grid>
     )

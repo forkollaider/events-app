@@ -1,5 +1,6 @@
 import {atom} from "jotai";
-import {EventInstance} from "@/types/EventInstance";
+import {EventInstance, EventInstanceDTO} from "@/types/EventInstance";
+import dayjs from "dayjs";
 
 export const createEventAtom = atom(null, async (_, __, event) => {
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event`, {
@@ -8,7 +9,7 @@ export const createEventAtom = atom(null, async (_, __, event) => {
     });
 });
 
-export const updateEventAtom = atom(null, async (_, __, event: EventInstance) => {
+export const updateEventAtom = atom(null, async (_, __, event: EventInstanceDTO) => {
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event/${event.id}`, {
         method: 'PUT',
         body: JSON.stringify(event),
@@ -24,7 +25,7 @@ export const refetchEventsAtom = atom(null, async (get,set) => {
 export const eventsAtom = atom(async (get,set) => {
     get(shouldRefetchEventsAtom)
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/event`);
-    return response.json();
+    return (await response.json()).map((event: EventInstance) => ({...event, datetime: dayjs(event.datetime)}));
 });
 
 export const deleteEventAtom = atom(null, async (_, __, id) => {

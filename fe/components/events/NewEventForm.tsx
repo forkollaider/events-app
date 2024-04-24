@@ -4,6 +4,8 @@ import {useAtomValue, useSetAtom} from "jotai";
 import {userAtom} from "@/store/user";
 import {EventLocation} from "@/types/Location";
 import {refetchEventsAtom, createEventAtom} from "@/store/event";
+import {DatePicker} from "@/components/forms/DatePicker";
+import dayjs, {Dayjs} from "dayjs";
 
 type Props = {
     closeForm: () => void;
@@ -14,6 +16,7 @@ export const NewEventForm = ({closeForm}: Props) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState<number>(0);
+    const [datetime, setDatetime] = useState<Dayjs | null>(dayjs(new Date()));
     const [location, setLocation] = useState<EventLocation>(EventLocation.Online);
     const [managerId] = useState(user?.id);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,6 +39,7 @@ export const NewEventForm = ({closeForm}: Props) => {
             description,
             price,
             location,
+            datetime: datetime?.toISOString(),
             managerId,
         })
         closeForm();
@@ -70,6 +74,7 @@ export const NewEventForm = ({closeForm}: Props) => {
                 value={price}
                 onChange={(event) => setPrice(parseFloat(event.target.value) || 0)}
             />
+            <DatePicker value={datetime} setter={setDatetime}/>
             <FormControl fullWidth sx={{mb: 1}}>
                 <InputLabel id="demo-simple-select-label">Age</InputLabel>
                 <Select
