@@ -5,6 +5,7 @@ import {useState} from "react";
 import {useSetAtom} from "jotai";
 import {useRouter} from "next/router";
 import {Spinner} from "@/components/Spinner";
+import dayjs from "dayjs";
 
 export const EventCard = ({event, currentUserId, isDetailPage = false}: {event: EventInstance, currentUserId: number, isDetailPage?: boolean}) => {
     const [isActionInProgress, setIsActionInProgress] = useState(false);
@@ -25,6 +26,7 @@ export const EventCard = ({event, currentUserId, isDetailPage = false}: {event: 
     }
     if(!event) return <Spinner/>;
     const isOwner = event.managerId === currentUserId;
+    const date = event.datetime.isValid() ? event.datetime.format('DD/MM/YYYY HH:mm') : 'No date set';
     return <Card sx={{ maxWidth: '500px' }}>
         <CardMedia
             sx={{ height: 265, maxWidth: '100%'}}
@@ -47,7 +49,7 @@ export const EventCard = ({event, currentUserId, isDetailPage = false}: {event: 
                         Location: {event.location}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Date: {event.datetime.format('DD/MM/YYYY HH:mm')}
+                        Date: {date}
                     </Typography>
                 </>
             )}
