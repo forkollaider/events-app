@@ -1,4 +1,4 @@
-import {Button, FormControl, InputLabel, MenuItem, Select, TextField, Stack} from "@mui/material";
+import {Button, FormControl, InputLabel, MenuItem, Select, TextField, Stack, Typography} from "@mui/material";
 import {useState} from "react";
 import {useAtomValue, useSetAtom} from "jotai";
 import {EventLocation} from "@/types/Location";
@@ -43,7 +43,7 @@ export const EditEventForm = ({closeForm, event}: Props) => {
         refetchEvents();
     }
     return (
-        <Stack>
+        <Stack sx={{maxWidth: '50%', mt: 2}}>
             <TextField
                 id="event-name"
                 label="Event name"

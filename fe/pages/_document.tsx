@@ -5,6 +5,7 @@ export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
   return (
     <Html lang="en">
       <Head>
+          <title>Evenia</title>
           <DocumentHeadTags {...props} />
       </Head>
       <body>

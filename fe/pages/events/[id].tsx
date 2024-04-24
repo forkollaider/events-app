@@ -7,6 +7,7 @@ import {EventCard} from "@/components/events/EventCard";
 import {userAtom} from "@/store/user";
 import {useRouter} from "next/router";
 import {EditEventForm} from "@/components/events/EditEventForm";
+import {Typography} from "@mui/material";
 
 const EventPage = () => {
     const params = useParams<{id: string}>();
@@ -22,6 +23,7 @@ const EventPage = () => {
 
     return (
         <>
+            <Typography variant="h3">{ isEditMode ? 'Edit e' : 'E' }vent details</Typography>
             { isEditMode
                 ? <EditEventForm event={currentEvent} closeForm={closeEventEdit}/>
                 :<EventCard event={currentEvent} currentUserId={user.id} isDetailPage={true}/>
