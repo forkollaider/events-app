@@ -3,10 +3,11 @@ import {UserDetailsForm} from "@/components/auth/UserDetailsForm";
 import {useAtomValue} from "jotai";
 import {userAtom} from "@/store/user";
 import {useEffect, useState} from "react";
-import {router} from "next/client";
+import {useRouter} from "next/router";
 
 const Onboarding = () => {
     const user = useAtomValue(userAtom);
+    const router = useRouter();
     const [redirectStarted, setRedirectStarted] = useState(false);
     useEffect(() => {
         if(user && (user.name || user.email) && !redirectStarted) {
