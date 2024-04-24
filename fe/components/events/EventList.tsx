@@ -15,7 +15,7 @@ export const EventList = () => {
         <Grid container spacing={2} mt={2}>
             <Grid item container md={12}>
                 <Grid item md={5}>
-                    <AddEvent/>
+                    <AddEvent currentUserId={user.id}/>
                 </Grid>
                 <Grid item md={4}>
                     <Typography variant="h3">Our events list</Typography>

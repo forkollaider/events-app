@@ -2,12 +2,13 @@ import {Button, Stack} from "@mui/material";
 import { useState } from "react";
 import {NewEventForm} from "@/components/events/NewEventForm";
 
-export const AddEvent = () => {
+type Props = { currentUserId: number }
+export const AddEvent = ({currentUserId}: Props) => {
     const [isActive, setIsActive] = useState(false);
     return (
         <Stack sx={{maxWidth: '400px'}}>
             <Button variant="contained" disabled={isActive} onClick={() => setIsActive(true)}>Add event</Button>
-            {isActive && <NewEventForm closeForm={() => setIsActive(false)}/>}
+            {isActive && <NewEventForm currentUserId={currentUserId} closeForm={() => setIsActive(false)}/>}
         </Stack>
     )
 }
